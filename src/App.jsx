@@ -5,13 +5,13 @@ import { MainContainer, ChatContainer, MessageList, Message, MessageInput, Typin
 
 const API_KEY = "";
 const systemMessage = { 
-    "role": "system", "content": "Explain things but type in a cockney accent"
+    "role": "system", "content": "Explain things as goku from dragonball Z"
 }
 
 function App() {
     const [messages, setMessages] = useState([
         {
-            message: "Hello, I'm ChatGPT! Ask me anything!",
+            message: "Ask me anthing~!",
             sentTime: "just now",
             sender: "ChatGPT"
         }
@@ -29,16 +29,11 @@ function App() {
 
         setMessages(newMessages);
 
-        // Initial system message to determine ChatGPT functionality
-        // How it responds, how it talks, etc.
         setIsTyping(true);
         await processMessageToChatGPT(newMessages);
     };
 
-    async function processMessageToChatGPT(chatMessages) { // messages is an array of messages
-        // Format messages for chatGPT API
-        // API is expecting objects in format of { role: "user" or "assistant", "content": "message here"}
-        // So we need to reformat
+    async function processMessageToChatGPT(chatMessages) { 
 
         let apiMessages = chatMessages.map((messageObject) => {
             let role = "";
@@ -51,14 +46,11 @@ function App() {
         });
 
 
-        // Get the request body set up with the model we plan to use
-        // and the messages which we formatted above. We add a system message in the front to'
-        // determine how we want chatGPT to act. 
         const apiRequestBody = {
             "model": "gpt-3.5-turbo",
             "messages": [
-                systemMessage,  // The system message DEFINES the logic of our chatGPT
-                ...apiMessages // The messages from our chat with ChatGPT
+                systemMessage,  
+                ...apiMessages 
             ]
         }
 
